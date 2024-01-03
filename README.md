@@ -16,7 +16,7 @@ This project is a mobile application built with React Native using Expo for the 
 ### Prerequisites
 - Node.js and npm installed on your machine.
 - Expo CLI installed globally.
-- ...
+
 
 ### Installation
 1. Clone the repository:
