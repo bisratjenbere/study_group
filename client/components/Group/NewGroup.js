@@ -58,7 +58,7 @@ const CreateGroup = () => {
     if (groupName.length > 1 && groupSubject.length > 1) {
       sendRequest(
         {
-          url: "http://10.194.65.19:3000/api/v1/groups",
+          url: "http://10.194.65.21:3000/api/v1/groups",
           method: "POST",
           body: { ...groupToBeCreated },
           headers: { "Content-Type": "application/json" },

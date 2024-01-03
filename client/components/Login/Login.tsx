@@ -45,7 +45,7 @@ const Login = () => {
     if (userName.length >= 1 && password.length >= 1) {
       sendRequest(
         {
-          url: "http://10.194.65.19:3000/api/v1/users/login",
+          url: "http://10.194.65.21:3000/api/v1/users/login",
           method: "POST",
           body: { userName, password },
           headers: { "Content-Type": "application/json" },

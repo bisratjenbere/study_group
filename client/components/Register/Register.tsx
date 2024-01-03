@@ -40,7 +40,7 @@ const Signup = () => {
       ) {
         sendRequest(
           {
-            url: "http://10.194.65.19:3000/api/v1/users/signUp",
+            url: "http://10.194.65.21:3000/api/v1/users/signUp",
             method: "POST",
             body: { userName, password, name, phoneNumber },
             headers: { "Content-Type": "application/json" },

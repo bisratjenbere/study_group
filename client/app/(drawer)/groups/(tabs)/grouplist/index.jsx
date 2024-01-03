@@ -13,7 +13,7 @@ export default function Page() {
           options={{
             headerShown: true,
             headerTitleStyle: { color: "#fff" },
-            headerStyle: { backgroundColor: COLORS.secondary, padding: 10 },
+            headerStyle: { backgroundColor: "#1640D6", padding: 10 },
             headerLeft: () => <DrawerToggleButton />,
           }}
         />

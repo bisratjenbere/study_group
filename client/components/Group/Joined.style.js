@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     color: "#777",
   },
   groupImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 5,
-    marginRight: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 24,
+    marginRight: 20,
   },
 });
 export default styles;

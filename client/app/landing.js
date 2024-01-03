@@ -22,7 +22,7 @@ const Home = () => {
       <Stack.Screen
         options={{
           headerStyle: {
-            backgroundColor: COLORS.secondary,
+            backgroundColor: "#1640D6",
           },
           headerShadowVisible: true,
 

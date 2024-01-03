@@ -46,7 +46,7 @@ const GroupDetail = ({ groupData, groupId }) => {
   const goToChat = () => {
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/groups/${groupId}`,
+        url: `http://10.194.65.21:3000/api/v1/groups/${groupId}`,
         method: "PATCH",
         body: { members: currentData.members },
         headers: { "Content-Type": "application/json" },
@@ -61,7 +61,7 @@ const GroupDetail = ({ groupData, groupId }) => {
     navigation.goBack();
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/groups/${groupId}`,
+        url: `http://10.194.65.21:3000/api/v1/groups/${groupId}`,
         method: "PATCH",
         body: { members: currentData.members },
         headers: { "Content-Type": "application/json" },

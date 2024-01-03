@@ -38,7 +38,7 @@ export default function Page() {
   useEffect(() => {
     sendRequest(
       {
-        url: "http://10.194.65.19:3000/api/v1/groups",
+        url: "http://10.194.65.21:3000/api/v1/groups",
       },
       getAllGroup
     );
@@ -47,7 +47,7 @@ export default function Page() {
   const handleJoin = (groupId) => {
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/groups/${groupId}`,
+        url: `http://10.194.65.21:3000/api/v1/groups/${groupId}`,
         method: "PATCH",
         body: { members: userData.id },
         headers: { "Content-Type": "application/json" },
@@ -93,7 +93,7 @@ export default function Page() {
         options={{
           headerShown: true,
           headerTitleStyle: { color: "#fff" },
-          headerStyle: { backgroundColor: COLORS.secondary, padding: 10 },
+          headerStyle: { backgroundColor: "#1640D6", padding: 10 },
           headerLeft: () => <DrawerToggleButton />,
         }}
       />

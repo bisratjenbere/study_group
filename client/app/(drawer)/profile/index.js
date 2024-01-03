@@ -23,7 +23,7 @@ export default function Page() {
           title: "Profile",
 
           headerTitleStyle: { color: "#fff" },
-          headerStyle: { backgroundColor: COLORS.secondary, padding: 10 },
+          headerStyle: { backgroundColor: "#1640D6", padding: 10 },
           headerShown: true,
           headerLeft: () => <DrawerToggleButton />,
         }}

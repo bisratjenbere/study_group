@@ -27,7 +27,7 @@ export default function Page() {
   useEffect(() => {
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/messages/${params.id}`,
+        url: `http://10.194.65.21:3000/api/v1/messages/${params.id}`,
       },
       handleLoadDetail
     );
