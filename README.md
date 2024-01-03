@@ -1,8 +1,7 @@
-# Project Title
+# campus Study group
 
 ## Description
-This project is a mobile application built with React Native using Expo for the frontend and Node.js Express for the backend. It serves as [brief description or purpose of the project].
-
+This project is a mobile application built with React Native using Expo for the frontend and Node.js Express for the backend. 
 ## Features
 - chating
 - join group
