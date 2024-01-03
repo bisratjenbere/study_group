@@ -1,4 +1,4 @@
-# campus Study group
+# Campus Study group
 
 ## Description
 This project is a mobile application built with React Native using Expo for the frontend and Node.js Express for the backend. 
