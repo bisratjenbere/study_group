@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Ignore any .DS_Store files
+.DS_Store
+
+# Ignore local configuration
+config.js
+
+# IDE specific files (if using Visual Studio Code)
+.vscode/
+*.code-workspace
+
+# Ignore npm debug files
+npm-debug.log*
+
+# Ignore macOS file system metadata
+._*
+
+# OS generated files
+.DS_Store
+Thumbs.db

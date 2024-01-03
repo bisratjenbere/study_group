@@ -1,0 +1,26 @@
+{
+  "__v": 0,
+  "_id": "65832f442f1f1c1caffe690f",
+  "admin": {
+    "__v": 0,
+    "_id": "658327a82f1f1c1caffe6900",
+    "name": "abebe",
+    "password": "$2a$10$1BF0Hac2hqIWcfrdILYJxe/01e5BrDtFNV.NSjEWYyM4u1eTjIMBe",
+    "phoneNumber": "0995562404",
+    "userName": "bisruJenbe"
+  },
+  "members": [
+    {
+      "__v": 0,
+      "_id": "658c5301a0247804198f9387",
+      "name": "HenokJ",
+      "password": "$2a$10$Y6EYQdQdzI4WlQlCb8DOfejULhR2aoYmLaqH4vD3zRJdwWmWQyBS.",
+      "phoneNumber": "0995562404",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/image-2df3e.appspot.com/o/images%2F1703710380642?alt=media&token=ea88b52b-e7ce-4e34-9b90-bcb96265cc72",
+      "userName": "hena@12"
+    }
+  ],
+  "name": "Bookworms United",
+  "photo": "https://picsum.photos/200/200?theme=books",
+  "subject": "Literature and Discussion"
+}
