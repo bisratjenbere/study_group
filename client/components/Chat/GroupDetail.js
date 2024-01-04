@@ -149,15 +149,19 @@ const GroupDetail = ({ groupData, groupId }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
-    paddingHorizontal: 20,
     backgroundColor: COLORS.lightWhite,
   },
   header: {
+    
+    backgroundColor:COLORS.blue,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+    padding: 16,
+    paddingTop:20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
   },
   headerText: {
     fontSize: 18,

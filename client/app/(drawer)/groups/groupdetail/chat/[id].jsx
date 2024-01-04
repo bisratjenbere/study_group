@@ -5,6 +5,7 @@ import { useGlobalSearchParams } from "expo-router/src/hooks";
 import { useContext, useEffect, useState } from "react";
 import useHttp from "../../../../../hooks/use-http";
 import { chatContext } from "../../../../../context/chat";
+import { Stack } from "expo-router";
 
 export default function Page() {
   const { sendRequest } = useHttp();
@@ -33,7 +34,12 @@ export default function Page() {
       handleLoadDetail
     );
   }, [params.id]);
-  if (params.id) return <StudyGroupChat groupId={params.id} />;
+  if (params.id)
+    return (
+    
+        <StudyGroupChat groupId={params.id} />
+     
+    );
 }
 
 const styles = StyleSheet.create({

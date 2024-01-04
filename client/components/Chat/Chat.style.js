@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -6,6 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
+    backgroundColor: COLORS.blue,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   editButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: COLORS.blue,
 
     paddingVertical: 12,
     paddingHorizontal: 35,

@@ -30,6 +30,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     id: "",
     phoneNumber: "",
     password: "",
+    photo: undefined,
   });
 
   const defaulValue = {

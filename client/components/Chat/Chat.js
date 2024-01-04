@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  ToastAndroid,
 } from "react-native";
 import styles from "./Chat.style";
 import RenderItem, { renderItem } from "./RenderIteam";
@@ -17,6 +18,7 @@ import useHttp from "../../hooks/use-http";
 const StudyGroupChat = ({ groupId }) => {
   const { sendRequest } = useHttp();
   const { message, setMessage } = useContext(chatContext);
+
   const [chatMessage, setChatMessage] = useState("");
   const { userData } = useContext(authContext);
   const navigation = useNavigation();
@@ -26,27 +28,31 @@ const StudyGroupChat = ({ groupId }) => {
   };
 
   const sendMessage = () => {
-    const curr = {
-      id: Date.now(),
-      content: chatMessage,
-      creator: userData.id,
-      date: Date.now(),
-      group: groupId,
-    };
+    if (chatMessage.length > 0) {
+      const curr = {
+        id: Date.now(),
+        content: chatMessage,
+        creator: userData.id,
+        date: Date.now(),
+        group: groupId,
+      };
 
-    const newMessage = [...message, { ...curr, creator: userData }];
+      const newMessage = [...message, { ...curr, creator: userData }];
 
-    setMessage(newMessage);
-    setChatMessage("");
-    sendRequest(
-      {
-        url: `http://10.194.65.21:3000/api/v1/messages/${groupId}`,
-        method: "POST",
-        body: { ...curr },
-        headers: { "Content-Type": "application/json" },
-      },
-      getUpdatedGroup
-    );
+      setMessage(newMessage);
+      setChatMessage("");
+      sendRequest(
+        {
+          url: `http://10.194.65.21:3000/api/v1/messages/${groupId}`,
+          method: "POST",
+          body: { ...curr },
+          headers: { "Content-Type": "application/json" },
+        },
+        getUpdatedGroup
+      );
+    } else {
+      ToastAndroid.show("Nothing To Send ", ToastAndroid.LONG);
+    }
   };
 
   return (
@@ -58,12 +64,21 @@ const StudyGroupChat = ({ groupId }) => {
         <Text style={styles.title}>Study Group Chat</Text>
         <Ionicons name="chatbubbles" size={24} />
       </View>
-      <FlatList
-        style={styles.content}
-        data={message.slice()}
-        renderItem={({ item }) => <RenderItem curUser={userData} item={item} />}
-        keyExtractor={(item) => item.id.toString()}
-      />
+
+      {message.length === 0 ? (
+        <View style={{flex:1, justifyContent:"center"}}>
+          <Text  style={{alignSelf:"center", }}>No message here yet!! </Text>
+        </View>
+      ) : (
+        <FlatList
+          style={styles.content}
+          data={message.slice()}
+          renderItem={({ item }) => (
+            <RenderItem curUser={userData} item={item} />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      )}
 
       <View style={styles.inputContainer}>
         <TextInput

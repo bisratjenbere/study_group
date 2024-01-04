@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SettingsScreen = () => {
   const router = useRouter();
@@ -22,9 +23,12 @@ const SettingsScreen = () => {
     router.push("/(drawer)/settings/update");
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setDarkMode(false);
-    router.push("/login");
+    try {
+      await AsyncStorage.removeItem("userData");
+      router.push("/login");
+    } catch (e) {}
   };
 
   return (

@@ -17,6 +17,16 @@ import styles from "./Login.style";
 import { useRouter } from "expo-router";
 import { COLORS } from "../../constants";
 import useHttp from "../../hooks/use-http";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+type userCredential = {
+  userName: string;
+  password: string;
+  phoneNumber: string;
+  name: string;
+  id: string;
+  photo?: string;
+};
 
 const Login = () => {
   const navigation = useNavigation();
@@ -25,14 +35,30 @@ const Login = () => {
   const { isLoading, sendRequest, error } = useHttp();
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const storeData = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("userData", value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const handleUser = (response: any) => {
     const result = response.data;
 
     const { userName, phoneNumber, password, name, _id } = result;
-    setUser({ userName, phoneNumber, name, id: _id, password });
+    const userCredential: userCredential = {
+      userName,
+      password,
+      phoneNumber,
+      name,
+      id: _id,
+    };
+    const photo = result?.photo;
+    if (photo) userCredential.photo = photo;
+    setUser(userCredential);
+    storeData(JSON.stringify(userCredential));
     setIsLoggedIn(true);
-
-    router.push("");
+    router.push("/(drawer)/home");
     setUserName("");
     setPassword("");
 

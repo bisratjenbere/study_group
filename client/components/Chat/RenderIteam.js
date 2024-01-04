@@ -12,8 +12,11 @@ const RenderItem = React.memo(({ item, curUser }) => (
     ]}
   >
     <View style={styles.userInfo}>
-      {item.photo ? (
-        <Image source={item?.photo} style={styles.userPhoto} />
+      {item.creator.photo ? (
+        <Image
+          source={{ uri: item?.creator?.photo }}
+          style={styles.userPhoto}
+        />
       ) : (
         <Ionicons name="person-circle-outline" size={24} color="black" />
       )}
