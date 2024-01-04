@@ -9,6 +9,7 @@ router
   .route("/:id")
   .patch(messageController.updateMessage)
   .delete(messageController.deleteMessage)
-  .get(messageController.getMessageByGroupID);
+  .get(messageController.getMessageByGroupID)
+  .post(messageController.createMessages);
 
 module.exports = router;

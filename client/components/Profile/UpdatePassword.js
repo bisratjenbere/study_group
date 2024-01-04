@@ -1,5 +1,13 @@
 import React, { useContext, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Alert, Text } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Alert,
+  Text,
+  ToastAndroid,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { authContext } from "../../context/authContext";
 import useHttp from "../../hooks/use-http";
@@ -15,7 +23,7 @@ const ChangePasswordScreen = () => {
   const { userData } = useContext(authContext);
 
   const handlePasswordChange = (data) => {
-    Alert.alert("Success", "Password changed successfully!");
+    ToastAndroid.show("Password changed successfully!", ToastAndroid.SHORT);
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
@@ -23,18 +31,21 @@ const ChangePasswordScreen = () => {
   };
   const handleChangePassword = () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
-      Alert.alert("Error", "Please fill in all fields.");
+      ToastAndroid.show("Please fill in all fields.", ToastAndroid.LONG);
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      Alert.alert("Error", "New password and confirm password do not match.");
+      ToastAndroid.show(
+        "New password and confirm password do not match.",
+        ToastAndroid.LONG
+      );
       return;
     }
 
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/users/${userData.id}`,
+        url: `http://10.194.65.21:3000/api/v1/users/${userData.id}`,
         method: "PATCH",
         body: { password: newPassword },
         headers: { "Content-Type": "application/json" },

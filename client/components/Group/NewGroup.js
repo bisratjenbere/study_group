@@ -7,6 +7,7 @@ import {
   Image,
   StyleSheet,
   Alert,
+  ToastAndroid,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { authContext } from "../../context/authContext";
@@ -14,6 +15,8 @@ import useHttp from "../../hooks/use-http";
 import { groupContext } from "../../context/groupContext";
 import { uploadImage } from "../../utils/upload";
 import { useRouter, usePathname } from "expo-router";
+
+import { Ionicons } from "@expo/vector-icons";
 
 const CreateGroup = () => {
   const router = useRouter();
@@ -37,9 +40,10 @@ const CreateGroup = () => {
     setGroupName("");
     setGroupSubject("");
     router.push("/groups");
-    Alert.alert(
-      " Group Magic! ",
-      "Congratulations! You just sparked a new connection ✨"
+
+    ToastAndroid.show(
+      "Congratulations! You just sparked a new connection ✨",
+      ToastAndroid.LONG
     );
   };
 
@@ -52,7 +56,6 @@ const CreateGroup = () => {
     };
     if (groupPhoto) {
       groupToBeCreated.photo = groupPhoto;
-      console.log(groupToBeCreated);
     }
 
     if (groupName.length > 1 && groupSubject.length > 1) {
@@ -66,7 +69,7 @@ const CreateGroup = () => {
         onCreateGroup
       );
     } else {
-      Alert.alert("Oops! Missing Details");
+      ToastAndroid.show("Missing Details", ToastAndroid.LONG);
     }
   };
 
@@ -107,13 +110,16 @@ const CreateGroup = () => {
         value={groupSubject}
         onChangeText={(text) => setGroupSubject(text)}
       />
+
       <TouchableOpacity onPress={handleChoosePhoto} style={styles.photoButton}>
         {groupPhoto ? (
           <Image source={{ uri: groupPhoto }} style={styles.groupPhoto} />
         ) : (
           <Text style={styles.photoText}>Choose Group Photo</Text>
         )}
+       
       </TouchableOpacity>
+
       <TouchableOpacity onPress={handleCreateGroup} style={styles.createButton}>
         <Text style={styles.createText}>Create Group</Text>
       </TouchableOpacity>
@@ -152,6 +158,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   photoText: {
+    alignSelf: "center",
+
     color: "#555",
   },
   createButton: {

@@ -10,6 +10,7 @@ import {
   TextInput,
   Pressable,
   Alert,
+  ToastAndroid,
 } from "react-native";
 
 import { useRouter } from "expo-router";
@@ -26,6 +27,7 @@ const Signup = () => {
   const { sendRequest } = useHttp();
 
   const onSignup = (data: any) => {
+    ToastAndroid.show("account created sucessfully.", ToastAndroid.LONG);
     router.push("./login");
   };
 
@@ -48,7 +50,7 @@ const Signup = () => {
           onSignup
         );
       } else {
-        Alert.alert("Empty Fields", "Please fill in all fields. ");
+        ToastAndroid.show("Please fill in all fields.", ToastAndroid.LONG);
       }
       setName("");
       setPhoneNumber("");

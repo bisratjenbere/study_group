@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import styles from "./Joined.style";
 import { useRouter } from "expo-router";
-import { COLORS } from "../../constants";
+
 import { groupContext } from "../../context/groupContext";
 
 const StudyGroups = () => {
@@ -11,6 +11,19 @@ const StudyGroups = () => {
   const groupUserJoined = groupData.filter((group) => group.isJoined === true);
 
   const router = useRouter();
+
+  if (groupUserJoined.length === 0) {
+    return (
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontSize: 16 }}>you're Not Member of Any Group</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView>

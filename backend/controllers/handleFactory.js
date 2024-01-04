@@ -34,6 +34,17 @@ exports.createOne = (model) =>
       },
     });
   });
+exports.deleteAndCreateMany = (model) =>
+  catchAsync(async (req, res, next) => {
+    const messages = req.body;
+    const createdMessages = await model.create(messages);
+    return res.status(StatusCodes.CREATED).json({
+      status: "success",
+      data: {
+        messages: createdMessages,
+      },
+    });
+  });
 
 exports.deleteOne = (model) =>
   catchAsync(async (req, res, next) => {

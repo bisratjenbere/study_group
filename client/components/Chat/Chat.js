@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   TextInput,
@@ -7,36 +7,46 @@ import {
   FlatList,
 } from "react-native";
 import styles from "./Chat.style";
-import { renderItem } from "./RenderIteam";
+import RenderItem, { renderItem } from "./RenderIteam";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { chatContext } from "../../context/chat";
 import { authContext } from "../../context/authContext";
+import useHttp from "../../hooks/use-http";
 
-const StudyGroupChat = () => {
+const StudyGroupChat = ({ groupId }) => {
+  const { sendRequest } = useHttp();
   const { message, setMessage } = useContext(chatContext);
-  const groupId = message.groupId;
   const [chatMessage, setChatMessage] = useState("");
   const { userData } = useContext(authContext);
-
   const navigation = useNavigation();
-
+  const getUpdatedGroup = (response) => {};
   const goBack = () => {
     navigation.goBack();
   };
 
   const sendMessage = () => {
-    const newMessage = [
-      ...message,
-      {
-        id: Date.now(),
-        content: "Hi there",
-        creator: { ...userData },
-        data: Date.now(),
-      },
-    ];
-    console.log(newMessage);
+    const curr = {
+      id: Date.now(),
+      content: chatMessage,
+      creator: userData.id,
+      date: Date.now(),
+      group: groupId,
+    };
+
+    const newMessage = [...message, { ...curr, creator: userData }];
+
     setMessage(newMessage);
+    setChatMessage("");
+    sendRequest(
+      {
+        url: `http://10.194.65.21:3000/api/v1/messages/${groupId}`,
+        method: "POST",
+        body: { ...curr },
+        headers: { "Content-Type": "application/json" },
+      },
+      getUpdatedGroup
+    );
   };
 
   return (
@@ -50,10 +60,9 @@ const StudyGroupChat = () => {
       </View>
       <FlatList
         style={styles.content}
-        data={message.reverse()}
-        renderItem={renderItem}
+        data={message.slice()}
+        renderItem={({ item }) => <RenderItem curUser={userData} item={item} />}
         keyExtractor={(item) => item.id.toString()}
-        inverted
       />
 
       <View style={styles.inputContainer}>

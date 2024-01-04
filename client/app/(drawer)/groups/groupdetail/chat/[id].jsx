@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 import StudyGroupChat from "../../../../../components/Chat/Chat";
 import { useGlobalSearchParams } from "expo-router/src/hooks";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import useHttp from "../../../../../hooks/use-http";
 import { chatContext } from "../../../../../context/chat";
 
@@ -17,9 +17,10 @@ export default function Page() {
         id: res._id,
         groupId: res.group._id,
         content: res.content,
-        data: res.date,
-        creator: res.creator,
+        date: res.date,
+        creator: { ...res.creator, id: res.creator._id },
       };
+      console.log(allMessage);
     });
 
     setMessage(allMessage);
@@ -32,8 +33,7 @@ export default function Page() {
       handleLoadDetail
     );
   }, [params.id]);
-
-  return <StudyGroupChat />;
+  if (params.id) return <StudyGroupChat groupId={params.id} />;
 }
 
 const styles = StyleSheet.create({

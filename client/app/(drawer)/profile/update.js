@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, Settings } from "react-native";
+import { Text, StyleSheet, View, Settings, ToastAndroid } from "react-native";
 import { Drawer } from "expo-router/drawer";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import UpdateProfile from "../../../components/update/Seetings";
@@ -7,10 +7,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import useHttp from "../../../hooks/use-http";
 import { useContext, useEffect } from "react";
 import { authContext } from "../../../context/authContext";
-import { useRouter } from "expo-router";
+import { useRouter, useNavigation } from "expo-router";
 
 export default function Page() {
-  const router = useRouter();
+  const navigation = useNavigation();
   const { userData, setUser } = useContext(authContext);
   const { sendRequest, error, isLoading } = useHttp();
   const saveHandler = (updatedData) => {
@@ -29,42 +29,54 @@ export default function Page() {
       updatedUser.phoneNumber = updatedData.phoneNumber;
     }
 
-    sendRequest(
-      {
-        url: `http://10.194.65.19:3000/api/v1/users/${userData.id}`,
-        method: "PATCH",
-        body: { ...updatedUser },
-        headers: { "Content-Type": "application/json" },
-      },
-      handleUpdateUser
-    );
+    if (
+      updatedUser.name ||
+      updatedUser.photo ||
+      updatedUser.phoneNumber ||
+      updatedUser.userName
+    ) {
+      sendRequest(
+        {
+          url: `http://10.194.65.21:3000/api/v1/users/${userData.id}`,
+          method: "PATCH",
+          body: { ...updatedUser },
+          headers: { "Content-Type": "application/json" },
+        },
+        handleUpdateUser
+      );
+    } else {
+      navigation.goBack();
+    }
   };
   const handleUpdateUser = (data) => {
     const { userName, phoneNumber, password, name, _id, photo } = data.data;
 
     setUser({ password, phoneNumber, name, id: _id, photo, userName });
-    router.push("/profile");
-    
+    navigation.goBack();
+    console.log(password, phoneNumber, name, photo);
+
+    ToastAndroid.show("Updated", ToastAndroid.LONG);
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Drawer.Screen
         options={{
           title: "Update",
           headerTitleStyle: { color: "#fff" },
-          headerStyle: { backgroundColor: COLORS.secondary, padding: 10 },
+          headerStyle: { backgroundColor: "#1640D6", padding: 10 },
           headerShown: true,
           headerLeft: () => <DrawerToggleButton />,
         }}
       />
       <UpdateProfile user={userData} onSave={saveHandler} />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.white,
   },
 });

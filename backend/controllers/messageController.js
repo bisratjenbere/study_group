@@ -7,6 +7,8 @@ exports.createMessage = handleFactory.createOne(message);
 exports.updateMessage = handleFactory.updateOne(message);
 exports.deleteMessage = handleFactory.deleteOne(message);
 
+exports.createMessages = handleFactory.deleteAndCreateMany(message);
+
 exports.getMessageByGroupID = catchAsync(async (req, res, next) => {
   const params = req.params.id;
   const groupMessage = await message

@@ -6,6 +6,7 @@ export default function DrawerLayout() {
   return (
     <Drawer
       screenOptions={{
+        backgroundColor: "#4477CE",
         headerTitle: "sidebar",
         headerShown: false,
         swipeEdgeWidth: 0,

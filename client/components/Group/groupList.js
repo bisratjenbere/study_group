@@ -7,7 +7,7 @@ const GroupList = ({ isJoined, name, subject, photo, onJoin }) => {
         <Image source={{ uri: photo }} style={styles.groupImage} />
       ) : (
         <Image
-          source={require("../../assets/image/study.jpg")}
+          source={require("../../assets/image/group.jpg")}
           style={styles.groupImage}
         />
       )}

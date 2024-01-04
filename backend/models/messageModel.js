@@ -13,6 +13,7 @@ const messageSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
+
   content: {
     type: String,
     required: [true, "message should have contnet"],

@@ -15,6 +15,7 @@ export default function Page() {
     const currentGroup = responseData.filter(
       (iteam) => iteam._id === params.id
     );
+
     setCurrentGroup(currentGroup);
   };
   useEffect(() => {

@@ -11,7 +11,7 @@ import {
   Pressable,
   Image,
   ActivityIndicator,
-  Alert,
+  ToastAndroid,
 } from "react-native";
 import styles from "./Login.style";
 import { useRouter } from "expo-router";
@@ -35,9 +35,10 @@ const Login = () => {
     router.push("");
     setUserName("");
     setPassword("");
-    Alert.alert(
-      "Access Granted ",
-      "You're officially in. Now go make things happen!"
+
+    ToastAndroid.show(
+      "You're officially in. Now go make things happen!",
+      ToastAndroid.SHORT
     );
   };
 
@@ -53,7 +54,10 @@ const Login = () => {
         handleUser
       );
     } else {
-      Alert.alert("Empty Fields", "Username or Password can't be empty. ");
+      ToastAndroid.show(
+        "Username or Password can't be empty.",
+        ToastAndroid.LONG
+      );
     }
   };
 

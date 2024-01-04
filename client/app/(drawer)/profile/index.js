@@ -10,7 +10,6 @@ import { useRouter, usePathname } from "expo-router";
 
 export default function Page() {
   const { userData } = useContext(authContext);
-
   const router = useRouter();
 
   const handleEditProfile = () => {

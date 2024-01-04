@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  ToastAndroid,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
@@ -22,7 +23,7 @@ const EditProfile = ({ user, onSave }) => {
   };
 
   const handleChoosePhoto = async () => {
-    setIsUploading(true); // Indicate upload in progress
+    setIsUploading(true);
 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -52,7 +53,6 @@ const EditProfile = ({ user, onSave }) => {
   const handleSave = async () => {
     if (!isUploading) {
       onSave(editedUser);
-      Alert.alert("Sucess", "Updated");
     } else {
       Alert.alert("Loading", "File Uploading is in Progress");
     }
@@ -61,8 +61,11 @@ const EditProfile = ({ user, onSave }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleChoosePhoto}>
-        {imageUrl ? (
-          <Image style={styles.profileImage} source={{ uri: imageUrl }} />
+        {editedUser.photo ? (
+          <Image
+            style={styles.profileImage}
+            source={{ uri: editedUser.photo }}
+          />
         ) : (
           <Image
             style={styles.profileImage}

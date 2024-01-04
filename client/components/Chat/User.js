@@ -17,7 +17,7 @@ const UserList = ({ setIsAddMember, members, addMemberTostate }) => {
   useEffect(() => {
     sendRequest(
       {
-        url: `http://10.194.65.19:3000/api/v1/users`,
+        url: `http://10.194.65.21:3000/api/v1/users`,
       },
       handleUserLoad
     );

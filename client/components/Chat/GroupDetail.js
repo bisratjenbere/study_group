@@ -56,7 +56,9 @@ const GroupDetail = ({ groupData, groupId }) => {
 
     router.push(`/groups/groupdetail/chat/${groupId}`);
   };
-
+  const getMemberLoaded = (response) => {
+    console.log(response);
+  };
   const goBack = () => {
     navigation.goBack();
     sendRequest(
@@ -66,7 +68,7 @@ const GroupDetail = ({ groupData, groupId }) => {
         body: { members: currentData.members },
         headers: { "Content-Type": "application/json" },
       },
-      getUpdatedGroup
+      getMemberLoaded
     );
   };
   const addMember = () => {
